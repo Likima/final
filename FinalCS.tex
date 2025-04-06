@@ -429,7 +429,7 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
     \item \textbf{$\Delta^k$}: $\Delta^2f_i=\Delta(\Delta(f_i))=\Delta(f_{i+1}-f_i)=f_{i+2}-2f_{i+1}+f_i$
     \item \textbf{Error}: \( |f-P| \leq \frac{\prod|(x-x_k)|}{(n+1)!}\max|f^{(n+1)}| \)
     \item Avoid high-degree polynomials for non-smooth \( f \); use \textbf{Chebyshev nodes} to mitigate Runge's phenomenon.
-    \item Reuse computations with \textbf{Neville's Method}:\\ \( P_{i,j}(x) = \frac{(x-x_i)P_{i+1,j} - (x-x_j)P_{i,j-1}}{x_j - x_i} \)
+    \item Reuse computations with \textbf{Neville's Method}:\\ for $i=1,2,...,n$ do: for $j=1,2,...,i$ do $Q_{i,j} \leftarrow \frac{(x-x_{i-j}Q_{i,j-1})-(x-x_i)Q_{i-1,j-1}}{x_i-x_{i-j}}$
 \end{itemize}
 
 \textbf{Hermite Interpolation}
