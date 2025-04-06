@@ -1,0 +1,295 @@
+\documentclass{article}
+\usepackage[a4paper,margin=0mm]{geometry}
+\usepackage{parskip,setspace,titlesec,enumitem,tcolorbox,amsmath,amssymb}
+
+\setstretch{0.6}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\setlist{nosep,leftmargin=3mm}
+
+\begin{document}
+\raggedbottom
+\scriptsize
+\begin{tcolorbox}[colframe=black,colback=white,boxrule=0.3pt,arc=1pt,
+left=0pt,right=0pt,top=0pt,bottom=0pt]
+
+\begin{minipage}[t]{0.49\textwidth}
+\textbf{\S1.1 Error Analysis}
+\begin{itemize}
+\item \textbf{Normalization}: 32 bit - Sign bit: 1, Sign exp: 1, Exp: 7, Normalized mantissa: 23.
+\item Absolute Error = $|p-p^*|$, Relative Error = $\frac{|p-p^*|}{|p|}$
+\item Significant Digits: RE $<5\times10^{-t}$
+\item \textbf{fl(x)}: Machine representation
+\item \textbf{Cancellation Error}: Subtracting nearly equal numbers
+\item \textbf{Example}: $p=0.54617$, $q=0.54601$, true $r=p-q=0.00016$\\ 
+4-digit: $p^*=0.5462$, $q^*=0.5460$, $r^*=0.002$ (RE=25\%)
+\item \textbf{Nested Multiplication}: Reduces error\\ 
+$f(z)=1.01z^4-4.62z^3-3.11z^2+12.2z-1.99=(((1.01z-4.62)z-3.11)z+12.2)z-1.99$
+\end{itemize}
+
+\begin{itemize}
+\item $P_n(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k$
+\item Remainder: $R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}$, $\xi\in(a,x)$
+\item Linear Approx: $f(x_0+h)\approx f(x_0)+hf'(x_0)$
+\item \textbf{Example}: $\xi\in(0,\pi/2)$, $\sin\xi\leq1 \Rightarrow R_n\leq\frac{(x)^n}{n!}$
+\end{itemize}
+
+\textbf{\S1.3 Convergence}
+\begin{itemize}
+\item $\alpha=\lim_{n\rightarrow\infty}(\alpha_n)$
+\item Rate: $\alpha_n = \alpha + \mathcal{O}(\beta_n)$ if $|\alpha_n-\alpha|\leq K|\beta_n|$
+\item Find largest $p$ where $\alpha_n-\alpha=\mathcal{O}(1/n^p)$
+\end{itemize}
+
+\textbf{\S1.4 Matrix Operations}
+\begin{itemize}
+\item $A = \begin{bmatrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\end{bmatrix}$, 
+$B = \begin{bmatrix}b_{11}&b_{12}\\b_{21}&b_{22}\\b_{31}&b_{32}\end{bmatrix}$
+\item $AB = \begin{bmatrix}
+a_{11}b_{11}+a_{12}b_{21}+a_{13}b_{31} & a_{11}b_{12}+a_{12}b_{22}+a_{13}b_{32}\\
+a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
+\end{bmatrix}$
+\end{itemize}
+
+\textbf{\S6.1 Gaussian Elimination}
+\begin{itemize}
+\item $\mathcal{O}(n^3)$ complexity
+\item \textbf{Pivoting}:
+\begin{itemize}
+\item Partial (PP): Max element in column
+\item Scaled PP: $s_i=\max_j|a_{ij}|$, pivot $\max(a_{ik}/s_i)$
+\item Complete (CP): Full matrix search ($\mathcal{O}(n^3)$)
+\end{itemize}
+\item \textbf{LU Decomposition}: $PA=LU$ through GE steps and $LUx = Pb$.
+\item \textbf{LU Algorithm}: $L = E_{n-a,m-b}^{-1}E_{n-a+1,m-b+1}^{-1}\cdots$ $U = $ GE.
+\item \textbf{Choleski Factorization}: If a matrix is symmetric and positive definite, it may be factored to the form $LDL^T$
+\end{itemize}
+
+\textbf{\S6.2 Special Matrices}
+\begin{itemize}
+\item \textbf{Inverse Matrix}: An inverse matrix of A is $A^{-1}$ such that $AA^{-1}=I$
+\item Properties: $(AB)^{-1}=B^{-1}A^{-1}$, $(A^{-1})^T=(A^T)^{-1}$
+\item \textbf{Singular}: A matrix is singular iff its det is 0.
+\item \textbf{Diagonal}: $d_{ij}=0$ for $i\neq j$: All non-diagonal entries are 0.
+\item \textbf{Symmetric}: $A=A^T$, $(AB)^T=B^TA^T$
+\item \textbf{Permutation}: Row swaps of $I_n$, $PA$ reorders rows: $P^T = P^{-1}$
+\item \textbf{Diagonally Dominant}: $|a_{ii}| > \sum_{j\neq i}|a_{ij}|$ (nonsingular)
+\item \textbf{Positive Definite}: $x^TAx>0$ $\Rightarrow$ $A=LDL^T$, $a_{ii}>0$, $a_{ij}^2<a_{ii}a_{jj}$
+\item \textbf{Minor}: $M_{ij}$ is a submatrix of A with the row i deleted and column j deleted.
+\item \textbf{Band}: an $n\times n$ matrix is a band matrix if $p,q\in \mathbb{Z}:1\le p, q\le n$ exist with $a_{i_j} = 0$ for $i+p\le j$ or $j+q\ge i$ The bandwidth is defined as $w=p+q-1$. For a diagonal matrix, $p=1,q=1,w=1$
+\item \textbf{Tridiagonal}: Band with $p=2, q=2$. It exhibits the following properties
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+    \item $a_{ii} = l_{ii}$
+    \item $a_{i,i-1}=l_{i,i-1}: i=2,3,\cdots,n$
+    \end{itemize}
+    \end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+    \begin{itemize}
+    \item $a_{i,i+1}=l_{ii}u_{i,i+1}:i=1\cdots n-1$
+    \item $a_{ii} = l_{i,i-1}u_{i-1,i}+l_{ii}: i=2\cdots n$
+\end{itemize}
+\end{minipage}
+\item Crout Factorization: This factorization happens in $O(n)$ time
+\end{itemize}
+
+\textbf{\S Strategies}
+\begin{itemize}
+    \item \textbf{RoC With inf limit}: set $h=1/n$ and solve accordingly. 
+    \item \textbf{$D\cdot (L+U)$}: given D has ONLY diagonal entries and L+U has NO diagonal entries, the resulting matrix A is composed of entries $a_{ij}=d_{ii}\cdot (l+u)_{ij}$
+    \item \textbf{Verification of Bisection}: To verify bisection can be applied, make sure that f(a) and f(b) are of different signs.
+    \item \textbf{Error of Bisection}: To compute the accuracy of bisection to an $\varepsilon$, we use $\frac{b-a}{2^n}\le 
+    \varepsilon$
+    \item \textbf{Failure of Newton's Method}: NM Fails if $f'(x)=0$ for some x.
+    \item \textbf{Triangle Inequality}: $|x+y|\le |x|+|y|$
+\end{itemize}
+
+\textbf{\S Key Definitions \& Identities}
+\begin{itemize}
+    \item \textbf{Continuity}: $f\in C^n[a,b]$ reads: the nth derivative of f on [a,b] is continuous.
+    \item \textbf{Series Expansions}
+    \begin{itemize}
+        \item $e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \quad (\forall x \in \mathbb{R})$
+        \item $\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots$
+        \item $\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots$
+        \item $\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots \quad (|x| \leq 1)$
+        \item $\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots \quad (|x| < 1)$
+        \item $\frac{1}{1-x}=1+x+x^2+x^3+x^4+\cdots: |x|<1$
+        \item $\frac{1}{1+x}=1-x+x^2-x^3+x^4-\cdots: |x|<1$
+    \end{itemize}
+    
+\begin{minipage}[t]{0.45\textwidth}
+    \textbf{Core Identities}
+    \begin{itemize}
+        \item $\sin^2\theta + \cos^2\theta = 1$
+        \item $\sin(a\pm b) = \sin a\cos b \pm \cos a\sin b$
+        \item $\cos(a\pm b) = \cos a\cos b \mp \sin a\sin b$
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \textbf{Angle Transformations}
+    \begin{itemize}
+        \item $\sin 2\theta = 2\sin\theta\cos\theta$
+        \item $\cos 2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta$
+        \item $\sin^2\theta = \frac{1-\cos2\theta}{2}$, $\cos^2\theta = \frac{1+\cos2\theta}{2}$
+    \end{itemize}
+\end{minipage}
+
+    \item \textbf{Vector Norms}\\
+    \begin{minipage}[t]{0.45\textwidth}
+    \begin{itemize}
+       \item $||x||>0$
+       \item $||x|| = 0\Leftrightarrow x=0$
+    \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+    \begin{itemize}
+       \item $||\alpha x|| = |\alpha| ||x||$
+       \item $||x+y||\le ||x|| + ||y||$
+    \end{itemize}
+    \end{minipage}
+\end{itemize}
+\textbf{\S Useful Examples}
+\begin{itemize}
+    \item Suppose $g(x)=\frac{5}{x^2}+2$ Show $p_n=g(p_{n-1})$ will converge to g for $\forall p_0[2.5,3]$.\\
+    Since this is a decreasing function, the max of g(x) is g(2.5) and the min of g(x) is g(3).
+    \begin{itemize}
+        \item First compute the max, $g(2.5)=14/5 < 3$
+        \item Second compute the min, $g(3)=5/9 + 2>2.5$
+        \item Last compute $|g'(x)|=-10/x^3 \le max_{x\in[2.5,3]}|g'(x)|=16/25<1$
+    \end{itemize}
+    \item Given $||A||$ is a natural matrix norm of matrix A. show $|\lambda|\le||A||$ for any nonsingular A and any $\lambda$ of A.
+    $||A||=\max_{||x||=1}||Ax|| \ge ||Ax||:x \text{ is an e-vec s.t ||x||=1}=||\lambda x|| = |\lambda|||x||=|\lambda|\square$
+    \item When performing Jacobi or GS, when computing L+U, flip the signs of all entries.
+    \item To determine convergence for fixed point, compute $g'(p_0)\le1$, which gives a,b. Prove $g(x)$ cts on [a,b], $g(x)\in[a,b]$, $g'(x)$ exists on (a,b), $|g'(x)|\le k:\forall x \in(a,b), 0<k<1$
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\textbf{\S LA Determinants}
+\begin{itemize}
+\item 2x2: $|A|=ad-bc$
+\item nxn: $|A|=\sum_{j=1}^n a_{ij}A_{ij}$ via cofactors $A_{ij}=(-1)^{i+j}M_{ij}$
+\begin{minipage}[t]{0.45\textwidth}
+\textbf{Properties}
+    \begin{itemize}
+        \item Swap rows: $|\tilde{A}| = -|A|$
+        \item Scale row: $|\tilde{A}| = \lambda |A|$
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \begin{itemize}
+        \item Identical rows: $|A| = 0$
+        \item $|AB| = |A||B|$, \quad $|A^T| = |A|$
+        \item $|A^{-1}| = \frac{1}{|A|}$
+    \end{itemize}
+\end{minipage}
+\end{itemize}
+\textbf{\S7 Norms \& Eigen}\\
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item $||x||_2=\sqrt{\sum x_i^2}$, $||x||_\infty=\max|x_i|$
+\item $||A||_\infty=\max_i\sum_j|a_{ij}|$ Basically sum all rows together and determine the largest one.
+\end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item $||A||_2 = \sqrt{\rho(A)}$
+\item $||A|| = \max_{||x||=1}||Ax||$
+\end{itemize}
+\end{minipage}
+\begin{itemize}
+\item $\forall x \in \mathbb{R}^n: ||x||_\infty \le ||x||_2 \le \sqrt{n}||x||_\infty$
+\item A distance between matrices A and B wrt a matrix norm $||\cdot||$ is $||A-B||$
+\item Theorem: For any vector $x\ne0$, matrix Am and abt natural norm $||\cdot||$ we have $||Ax|| \le ||A||\cdot||x||$
+\item Cauchy-Schwarz: $||x+y||_2\leq||x||_2||y||_2$
+\item Eigen: $\lambda$ is an eigenvalue if $A\lambda=v \cdot \lambda$
+\item Finding Eigenthings: $\det (A-\lambda I)=0:\forall \lambda$.
+\item Spectral Radius: $\rho(A)=\max|\lambda_i|$, $\rho(A)\leq||A||$
+\item Theorem: If A is $n\times n$:
+\begin{itemize}
+    \item $||A||_2=[\rho(A^tA)]^{1/2}$
+    \item $\rho(A) \le ||A||:\forall||\cdot||$
+\end{itemize}
+\item Convergent: $\lim_{k\to\infty}A^k=0$ $\Leftrightarrow$ $\rho(A)<1$
+\item Matrix Norms: matrix norms have the following properties
+\begin{itemize}
+    \item $||A||\geq 0$ with $||A||=0 \leftrightarrow A=0$
+    \item $||\alpha A || = |\alpha|\cdot ||A||$
+    \item $||A+B|| \leq ||A|| + ||B||$
+\end{itemize}
+\end{itemize}
+
+\textbf{\S Iterative Methods}
+\begin{itemize}
+\item \textbf{General Iteration}: $x^{k+1}=Tx^k+c$
+\item \textbf{Jacobi}: $x^{k+1}=D^{-1}(L+U)x^k+D^{-1}b$
+\item \textbf{Gauss-Seidel}: $x^{k+1}=(D-L)^{-1}Ux^k+(D-L)^{-1}b$
+\item \textbf{Stein-Rosenberg}: For matrices with positive diagonals: $\rho_{GS}\leq\rho_J<1$
+\item \textbf{Speed of Convergence}: given matrices $T_{GS}=(D-L)^{-1}U$ and $T_J =D^{-1}(L+U)$, compare $\rho$. The bigger the $\rho$, the faster the convergence.
+\item Error: $||x-x^k||\leq\frac{||T||^k}{1-||T||}||x^1-x^0||$
+\item Stopping: $\frac{||x^k-x^{k-1}||}{||x^k||}<\varepsilon$
+\end{itemize}
+
+\textbf{\S2 Nonlinear Equations}
+\begin{itemize}
+\item \textbf{Bisection}:
+\begin{itemize}
+\item While $f(p_n)\neq0$ or $<T$: $p_n=\frac{a_1+b_1}{2}$
+\item Error: $\frac{b_n-a_n}{2}<T$, $p=a+\frac{b-a}{2}$
+\end{itemize}
+\item \textbf{Fixed-Point}:
+\begin{itemize}
+\item $p_n=g(p_{n-1})$, converges if $|g'(x)|\leq K<1$
+\item Algorithm: For $i<N_0$: $p=g(p_0)$, check $|p-p_0|<T$
+\item A fixed point is defined as a point in which $p = f(p)$
+\end{itemize}
+\item \textbf{Newton}:
+\begin{itemize}
+\item $p_n=p_{n-1}-\frac{f(p_{n-1})}{f'(p_{n-1})}$
+\item Quadratic convergence if $f'(p)\neq0$
+\end{itemize}
+\item \textbf{Secant}:
+\begin{itemize}
+\item $p_{n+1}=p_n-\frac{f(p_n)(p_n-p_{n-1})}{f(p_n)-f(p_{n-1})}$
+\item Approx derivative: $\frac{f(p_{n-1})-f(p_{n-2})}{p_{n-1}-p_{n-2}}$
+\item Algorithm: Store $q_0=f(p_0)$, $q_1=f(p_1)$, SET $p=p_1-\frac{q_1(p_1-p_0)}{q_1-q_0}$ IF STOPPING CONDITION: RETURN p; i++, $p_0=p_1, q_0=q_1, p_1=p, q_1=f(p)$ ENDWHILE OUTPUT FAILURE.
+\end{itemize}
+\end{itemize}
+
+\textbf{\S Theorems}
+\begin{itemize}
+\item \textbf{Bisection}: Suppose $f\in C[a,b]:f(a)\cdot f(b) <0$. Bisection generates $\{p_n\}$ approximating a zero p with $|p_n-p|\le \frac{b-a}{2^n}:n\ge 1$
+\item \textbf{Fixed Point}: If $g\in C[a,b]$, $g([a,b])\subseteq[a,b]$ g has a fixed point in $[a,b]$, additionally if $|g'|\leq K<1$, then the fixed point is unique.
+\item \textbf{Fixed Point Theorem}: Let $g\in C[a,b]$ and $g(x)\in[a,b]:\forall x\in[a,b]$. Suppose as well that g' exists on (a,b) and positive $K<1$ exists with $|g'(x)|\le K:\forall x\in (a,b)$. Then for any number $p_0 \in [a,b]$h the sequence defined by $p_n=g(p_{n-1}):n\ge1$ converges to the unique point $p\in[a,b]$
+\item \textbf {Corollary}: If g satisfies the hypothesis of the above theorem, $|p_n-p| \le k^n\max(p_0-a,b-p_0)$ and $|p_n-p|\le\frac{k^n}{1-k}|p_1-p_0|:\forall n>1$
+\item \textbf{Newton}: For $f\in C^2[a,b]$ with simple root, $\exists\delta>0:p_0\in[p-\delta,p+\delta]$ converges.
+\item \textbf{Matrix Invertibility}: $|A|\neq0$ $\Leftrightarrow$ unique solution $Ax=b$ $\Leftrightarrow$ $A^{-1}$ exists
+\item \textbf{Taylor}: With $R_n(x)\Rightarrow f(x)=P_n(x)+R_n(x)$, $R_n(x)=\frac{f^{n+1}(\xi)}{(n+1)!}(x-x_0)^{n+1}$:$\xi \epsilon (x, x_0)$
+\item \textbf{Existence of Inverse}: if A is square, $detA\ne 0 \leftrightarrow Ax=0$ has soln $x=0 \leftrightarrow Ax=b$ has a unique soln for any n-vector b. $\leftrightarrow A^{-1}$ exists.
+\item \textbf{Diagonally Dominant Matrices}: dd matrices are nonsingular. A being dd means LU can be performed without P. A matrix is positive definite if $x^tAx>0$. PD matrices are nonsingular, $\forall i=1,\cdots,n: a_{ii} > 0$, $max|a_{kj}| > max|a_{ii}|$, $(a_{ij})^2<a_{ii}a_{jj}:\forall i\neq j$.
+\item \textbf{Convergence and Spectral Radii}: equivalent statements: A is convergent, $\rho <1$, $lim A^nx=0:\forall x$, $lim ||A^n|| = 0 :\forall norms$.
+\item \textbf{Convergence of DD}: If A is strictly DD, Jacobi and GS converge to the unique soln. Ax=b.
+\item \textbf{Positive Definitive Check}: A matrix is PD if the leading principle submatrix determinants are positive.
+\item \textbf{Positive Definitive Check}: A matrix is PD iff it may be factored into $LL^T$
+\item \textbf{Non-singularity Check}: A matrix A has an inverse iff $\det A \ne 0$.
+\item \textbf{Determinant of Triangular Matrices}: The determinant of a triangular matrix is $\Pi a_{ii}$.
+\end{itemize}
+
+\textbf{\S Proofs}
+\begin{itemize}
+    \item \textbf{Bisection (THM1)}: $\forall n\ge1$: $b_n-a_n=(b-a)\cdot\frac{1}{2^{n-1}} :p\epsilon (a_n, b_n)$. Since $p_n = \frac{1}{2}(a_n+b_n): \forall n \ge 1$, $|p_n-p|\le \frac{1}{2}(b_n-a_n)=\frac{b-a}{2^n}$. $\square$
+    \item \textbf{Fixed Point}: Part i: If $g\in[a,b],g(x)\in[a,b]:\forall x\in[a,b]$ then g(x) has a fixed point in [a,b]:\\
+    If $g(a)=a\text{ or } g(b)=b$, g has a fixed point at an endpoint. Suppose for contradiction that it does not. $g(a)>a \text{ and }g(b)<b$. Define $h(x)=g(x)-x$. Then h is cts on [a,b] and $h(a)=g(a)-a>0 \text{ and } h(b)=g(b)-b<0$ IVT states that $\exists p \in(a,b): h(p)=0$ Thus $g(p)-p=0 \Rightarrow$p is a fixed point of g.\\
+    Part ii: Suppose as well $|g'(x)|\le k< 1:\forall x \in(a,b)$ and that $p,q\in[a,b]:p\ne q$. By MVT, $\exists \zeta: \frac{g(p)-g(q)}{p-q}=g'(\zeta)$. $|p-q|=|g(p)-g(q)|=|g'(\zeta)||p-q|\le k|p-q| < |p-q|$ contradiction.
+\end{itemize}
+\end{minipage}
+\end{tcolorbox}
+\newpage
+
+
+\end{document}
