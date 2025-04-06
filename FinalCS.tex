@@ -296,13 +296,15 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 
 \textbf{Basic Methods}
 \begin{itemize}
-    \item \textbf{Newton's Method}: Quadratic convergence if $f'(p)\neq0$. Iteration: $x_{n+1}=x_n-f(x_n)/f'(x_n)$.
+    \item \textbf{Newton's Method}: Quadratic convergence if $f'(p)\neq0$. Iteration: \\$x_{n+1}=x_n-f(x_n)/f'(x_n)$.
     \item \textbf{Secant Method}: Superlinear convergence (order $\approx1.618$). Uses two previous points.
-    \item \textbf{False Position}: Bracketing method combining bisection and secant approaches.
+    \item \textbf{False Position}: Bracketing method combining bisection and secant approaches. Algorithm: set $i=2,q_0=f(p_0),q_1=f(p_1)$. While $i\le N_0$, set $p=p_1-q_1(\frac{p_1-p_0}{q_1-q_0})$. If $|p-p_1|<TOL$ ret p. i++, $q=f(p)$. If $q\times q_1<0$ then $p_0=p_1, q_0 = q_1$. Set $p_1-p, q_1=q$. Endwhile fail. 
+    \item \textbf{Newton's Improved Method}: $p_{n+1}=p_n-\frac{f(p_n)f'(p_n)}{f'(p_n)^2-f(p_n)f''(p_n)}$
 \end{itemize}
 
 \textbf{Convergence Analysis}
 \begin{itemize}
+  \item A soln p of $f(x)=0$ is a zero of multiplicity m of f if for $x\ne p$ we can write $f(x)=(x-p)^m q(x)$ where $\lim_{x\rightarrow p}{q(x)}\ne 0$. (Simple zeros are multiplicity 1). 
     \item Order of convergence $\alpha$: $\lim \frac{|p_{n+1}-p|}{|p_n-p|^\alpha}=\lambda$
     \item Linear ($\alpha=1$), Quadratic ($\alpha=2$)
     \item Fixed-point: Linear if $g'(p)\neq0$, quadratic if $g'(p)=0$ and $g''$ bounded.
@@ -311,7 +313,7 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \textbf{Special Cases}
 \begin{itemize}
     \item Multiple roots: Modify Newton's using $\mu(x)=f(x)/f'(x)$
-    \item \textbf{Aitken's $\Delta^2$}: Accelerates linear sequences. Is given by
+    \item \textbf{Aitken's $\Delta^2$}: Accelerates linear sequences. Is given by\\
         $\hat{p}_n = p_n - \frac{(p_{n+1}-p_n)^2}{(p_{n+2}-p_{n+1})-(p_{n+1}-p_n)}$
     \item Steffensen's: Combines Aitken's with fixed-point, achieves quadratic convergence
     $p_{n+1} = p_n - \frac{[g(p_n)-p_n]^2}{g(g(p_n))-2g(p_n)+p_n}$
@@ -319,7 +321,7 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 
 \textbf{Polynomial Methods}
 \begin{itemize}
-    \item Horner's method: Efficient evaluation ($n$ mults/adds)
+  \item Horner's method: Efficient evaluation ($n$ mults/adds) Algorithm: ex: evaluate $P(x)=\sum^{n}_{i=0}a_ix^i$ and derivative at $x_0$. Input $n,a_j, x_0: 0\le j\le n$. Output: $y=P(x_0)$, $z=P'(x_0)$. Set $y=a_n, z=a_n$. For $j=n-1,n-2,...,1$ set $y=x_0y+a_j,z=x_0z+y$. Endfor set $y-x_0y+a_0$ output y,z.  
     \item Deflation: Find roots sequentially via $P(x)\approx Q(x)(x-x_0)$
     \item Müller's method: Quadratic interpolation using 3 points
     \item Fundamental thm of alg: If $P(x)$ has a degree $n\ge 1$, $P(x)$ has at least one root.
@@ -328,7 +330,7 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \end{itemize}
 \textbf{Weierstrass}: $\forall f$ cts on $[a,b]$, $\forall \varepsilon>0$, $\exists$ polynomial $p(x)$ with $|f(x)-p(x)|<\varepsilon$ $\forall x \in [a,b]$.
 
-\textbf{Lagrange Interpolation}: $P(x) = \sum_{m=0}^N f_m L_m(x)$, where $L_m(x) = \prod_{\substack{k=0\\k\neq m}}^N \frac{x-x_k}{x_m-x_k}$
+  \textbf{Lagrange Interpolation (unique!)}:\\ $P(x) = \sum_{m=0}^N f(x_m) L_m(x)$, where $L_m(x) = \prod_{\substack{k=0\\k\neq m}}^N \frac{x-x_k}{x_m-x_k}$
 
 \textbf{Interpolation Error}: $f(x)-P(x) = \frac{f^{(n+1)}(\xi(x))}{(n+1)!} \prod_{k=0}^n (x-x_k)$ for $f\in C^{n+1}[a,b]$
 
@@ -412,12 +414,89 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \item For RK4: $O(h^5)$ (local), $O(h^4)$ (global)
 \end{itemize}
 
-\textbf{Stability \& Step Size}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+    \textbf{Stability \& Step Size}
+    \begin{itemize}
+    \item Well-posed problem requires: unique solution exists + small input changes → small output changes
+    \item Step size formula: $h < \frac{2\varepsilon}{M(b-a)}$ for error $\varepsilon$, where $M = \max|y''|$
+    \item Example: $y'=y\cos t$ has Lipschitz constant $L=1$ since $|\frac{\partial f}{\partial y}| = |\cos t| \leq 1$
+    \end{itemize}
+\textbf{Chapter 3: Interpolation}
+\textbf{Lagrange Interpolation}
 \begin{itemize}
-\item Well-posed problem requires: unique solution exists + small input changes → small output changes
-\item Step size formula: $h < \frac{2\varepsilon}{M(b-a)}$ for error $\varepsilon$, where $M = \max|y''|$
-\item Example: $y'=y\cos t$ has Lipschitz constant $L=1$ since $|\frac{\partial f}{\partial y}| = |\cos t| \leq 1$
+    \item \textbf{$\Delta^k$}: $\Delta^2f_i=\Delta(\Delta(f_i))=\Delta(f_{i+1}-f_i)=f_{i+2}-2f_{i+1}+f_i$
+    \item \textbf{Error}: \( |f-P| \leq \frac{\prod|(x-x_k)|}{(n+1)!}\max|f^{(n+1)}| \)
+    \item Avoid high-degree polynomials for non-smooth \( f \); use \textbf{Chebyshev nodes} to mitigate Runge's phenomenon.
+    \item Reuse computations with \textbf{Neville's Method}:\\ \( P_{i,j}(x) = \frac{(x-x_i)P_{i+1,j} - (x-x_j)P_{i,j-1}}{x_j - x_i} \)
 \end{itemize}
 
+\textbf{Hermite Interpolation}
+\begin{itemize}
+    \item Error term: \( \frac{(x-x_0)^2\cdots(x-x_n)^2}{(2n+2)!}\max|f^{(2n+2)}| \)
+    \item Handle derivatives via \textbf{divided differences} with repeated nodes: \( z_{2i}=z_{2i+1}=x_i \)
+    \item \textit{Warning}: Noisy derivatives \(\Rightarrow\) amplified errors.
+\end{itemize}
+
+\textbf{Splines}
+\begin{itemize}
+    \item \textbf{Cubic splines}: Solve tridiagonal system (\(O(n)\) ops) with:
+        \[ h_{i-1}c_{i-1} + 2(h_{i-1}+h_i)c_i + h_ic_{i+1} = \frac{3}{h_i}(a_{i+1}-a_i) - \frac{3}{h_{i-1}}(a_i-a_{i-1}) \]
+    \item \textbf{Natural splines} (\(S''=0\)): Stable but less accurate.  
+    \textbf{Clamped splines}: Require \(f'(a), f'(b)\) but higher accuracy.
+    \item Error: \( O(h^4) \) for \( f \in C^4 \), \( O(h^2) \) for linear splines.
+\end{itemize}
+
+\textbf{Numerical Differentiation}
+\begin{itemize}
+    \item Centered difference: \( f'(x_0) \approx \frac{f(x_0+h)-f(x_0-h)}{2h} \), error \( O(h^2) \)
+    \item Optimal \( h \): Balance truncation (\( \propto h^2 \)) and roundoff (\( \propto h^{-1} \)).
+    \item \textbf{Richardson Extrapolation}:  
+        \( N_j(h) = N_{j-1}(h/2) + \frac{N_{j-1}(h/2)-N_{j-1}(h)}{2^{j}-1} \)
+\end{itemize}
+
+\textbf{Trapezoidal \& Simpson's Rules}
+\begin{itemize}
+    \item Trapezoidal error: \( -\frac{(b-a)}{12}h^2f''(\mu) \)  
+    Simpson's error: \( -\frac{(b-a)}{180}h^4f^{(4)}(\mu) \)
+    \item \textbf{Romberg Integration}: Accelerate Trapezoidal Rule via:
+        \[ R_{k,j} = R_{k,j-1} + \frac{R_{k,j-1}-R_{k-1,j-1}}{4^{j-1}-1} \]
+    \item Stop when \( |R_{k,k}-R_{k-1,k-1}| < \epsilon \).
+\end{itemize}
+
+\textbf{Adaptive Quadrature}
+\begin{itemize}
+    \item Error estimate: \( \frac{1}{15}|S(a,b)-S(a,c)-S(c,b)| \), \( c=(a+b)/2 \)
+    \item Subdivide intervals where error \( > \epsilon/2 \).
+\end{itemize}
+
+\textbf{Gaussian Quadrature}
+\begin{itemize}
+    \item Nodes: Roots of Legendre polynomials \( P_n(x) \). Weights: \( c_i = \int_{-1}^1 \prod_{j\neq i}\frac{x-x_j}{x_i-x_j}dx \)
+    \item Transform to \([-1,1]\): \( x = \frac{(b-a)t + (a+b)}{2} \), \( dx = \frac{b-a}{2}dt \)
+    \item Exact for polynomials of degree \( \leq 2n-1 \).
+\end{itemize}
+
+\textbf{General Tips}
+\begin{itemize}
+    \item Monitor error terms: \( \propto h^kf^{(k)} \).  
+    \item For oscillatory \( f \), use splines or piecewise methods.  
+    \item \textit{High-degree polynomials}: Unstable for noisy/non-smooth data.  
+    \item \textit{Symmetry}: Exploit in Gaussian quadrature and even/odd functions.
+\end{itemize}
+
+\textbf{Theorems:}
+\begin{itemize}
+  \item {\textbf{Thm 2.8:} Let p be a soln of the eq $x=g(x)$ and suppose $g'(p)=0$ and $g''$ is cts and strictly bounded by M on an interval I containing p. Then $\exists \delta > 0$ such that $p_0\in[p-\delta, p+\delta]$ the seq: $p_n=g(p_{n-1}): n\ge1$ converges at least quadratically to p. Moreover, for large n, $|p_{n+1}-p|<\frac{M}{2}|p_n-p|^2$ }
+  \item {\textbf{Thm 2.10:} $f\in C'[a,b]$ has a simple zero at p in (a,b) iff $f(p)=0,f'(p)\ne0$ }
+  \item {\textbf{Thm 2.11:} The function $f\in C^m[a,b]$ has a zero of multiplicity m at p iff $0=f(p)=f'(p)=f''(p)=\cdots=f^{(m-1)}(p)$ }
+  \item {\textbf{Thm 3.3}: Suppose $x_0,x_1,...,x_n$ are distinct numbers in [a,b] and $f\in C^{n+1}[a,b]$ then for each x in $[a,b]$, a number $\xi(x)$ in (a,b) exists with}\\
+  $f(x)=P(x)+\frac{f^{(n+1)}(\xi(x))}{(n+1)!}\prod_{i=0}^{n}(x-x_i)$
+  with P(x) being the nth Lagrange interpolating polynomial
+\end{itemize}
+
+
 \end{minipage}
+
 \end{document}
