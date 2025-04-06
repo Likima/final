@@ -290,6 +290,74 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \end{minipage}
 \end{tcolorbox}
 \newpage
+\begin{minipage}[t]{0.49\textwidth}
 
+\textbf{\S 2: Error Analysis and Acelerating Convergence}\\
 
+\textbf{Basic Methods}
+\begin{itemize}
+    \item \textbf{Newton's Method}: Quadratic convergence if $f'(p)\neq0$. Iteration: $x_{n+1}=x_n-f(x_n)/f'(x_n)$.
+    \item \textbf{Secant Method}: Superlinear convergence (order $\approx1.618$). Uses two previous points.
+    \item \textbf{False Position}: Bracketing method combining bisection and secant approaches.
+\end{itemize}
+
+\textbf{Convergence Analysis}
+\begin{itemize}
+    \item Order of convergence $\alpha$: $\lim \frac{|p_{n+1}-p|}{|p_n-p|^\alpha}=\lambda$
+    \item Linear ($\alpha=1$), Quadratic ($\alpha=2$)
+    \item Fixed-point: Linear if $g'(p)\neq0$, quadratic if $g'(p)=0$ and $g''$ bounded.
+\end{itemize}
+
+\textbf{Special Cases}
+\begin{itemize}
+    \item Multiple roots: Modify Newton's using $\mu(x)=f(x)/f'(x)$
+    \item \textbf{Aitken's $\Delta^2$}: Accelerates linear sequences. Is given by
+        $\hat{p}_n = p_n - \frac{(p_{n+1}-p_n)^2}{(p_{n+2}-p_{n+1})-(p_{n+1}-p_n)}$
+    \item Steffensen's: Combines Aitken's with fixed-point, achieves quadratic convergence
+    $p_{n+1} = p_n - \frac{[g(p_n)-p_n]^2}{g(g(p_n))-2g(p_n)+p_n}$
+\end{itemize}
+
+\textbf{Polynomial Methods}
+\begin{itemize}
+    \item Horner's method: Efficient evaluation ($n$ mults/adds)
+    \item Deflation: Find roots sequentially via $P(x)\approx Q(x)(x-x_0)$
+    \item Müller's method: Quadratic interpolation using 3 points
+    \item Fundamental thm of alg: If $P(x)$ has a degree $n\ge 1$, $P(x)$ has at least one root.
+    \item Cor: there also exists unique constants $x_1, ... x_k$ such that $\sum_{i=1}^{k}m_i=n, P(x)=a_n \times \prod_{i=1}^{k}(x-x_i)^{m_i}$
+    \item Cor: these functions are unique.
+\end{itemize}
+\textbf{Weierstrass Approximation Theorem}
+For $f$ continuous on $[a,b]$, $\forall \epsilon>0$, $\exists$ polynomial $p(x)$ such that $|f(x)-p(x)|<\epsilon$ for all $x\in[a,b]$.
+
+\textbf{Lagrange Interpolation}
+Given $(x_k, f_k)$ for $k=0,\dots,N$, the unique degree $\leq N$ polynomial satisfying $P(x_k)=f_k$ is:
+\[ P(x) = \sum_{m=0}^N f_m L_m(x), \quad L_m(x) = \prod_{\substack{k=0\\k\neq m}}^N \frac{x-x_k}{x_m-x_k} \]
+
+\textbf{Interpolation Error}
+If $f\in C^{n+1}[a,b]$, the error is:
+\[ f(x)-P(x) = \frac{f^{(n+1)}(\xi(x))}{(n+1)!} \prod_{k=0}^n (x-x_k) \]
+
+\textbf{Newton's Divided Differences}
+Recursive definition:
+\begin{align*}
+f[x_i] &= f(x_i) \\
+f[x_i,\dots,x_{i+k}] &= \frac{f[x_{i+1},\dots,x_{i+k}] - f[x_i,\dots,x_{i+k-1}]}{x_{i+k}-x_i}
+\end{align*}
+Interpolating polynomial:
+\[ P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j) \]
+
+\textbf{Finite Differences}
+For evenly spaced $x_i$ with step $h$:
+\begin{itemize}
+\item Forward: $\Delta f_i = f_{i+1}-f_i$, $\Delta^k f_i = \Delta^{k-1}f_{i+1}-\Delta^{k-1}f_i$
+\item Backward: $\nabla f_i = f_i-f_{i-1}$, $\nabla^k f_i = \nabla^{k-1}f_i-\nabla^{k-1}f_{i-1}$
+\end{itemize}
+
+\textbf{Newton's Formulas}
+\begin{itemize}
+\item Forward: $P(x) = \sum_{k=0}^n \binom{s}{k} \Delta^k f_0$ where $x=x_0+sh$
+\item Backward: $P(x) = \sum_{k=0}^n (-1)^k \binom{-s}{k} \nabla^k f_n$ where $x=x_n+sh$
+\end{itemize}
+
+\end{minipage}
 \end{document}
