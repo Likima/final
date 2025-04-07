@@ -298,7 +298,6 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \begin{itemize}
     \item \textbf{Newton's Method}: Quadratic convergence if $f'(p)\neq0$. Iteration: \\$x_{n+1}=x_n-f(x_n)/f'(x_n)$.
     \item \textbf{Secant Method}: Superlinear convergence (order $\approx1.618$). Uses two previous points.
-    \item \textbf{False Position}: Bracketing method combining bisection and secant approaches. Algorithm: set $i=2,q_0=f(p_0),q_1=f(p_1)$. While $i\le N_0$, set $p=p_1-q_1(\frac{p_1-p_0}{q_1-q_0})$. If $|p-p_1|<TOL$ ret p. i++, $q=f(p)$. If $q\times q_1<0$ then $p_0=p_1, q_0 = q_1$. Set $p_1-p, q_1=q$. Endwhile fail. 
     \item \textbf{Newton's Improved Method}: $p_{n+1}=p_n-\frac{f(p_n)f'(p_n)}{f'(p_n)^2-f(p_n)f''(p_n)}$
 \end{itemize}
 
@@ -313,19 +312,16 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \textbf{Special Cases}
 \begin{itemize}
     \item Multiple roots: Modify Newton's using $\mu(x)=f(x)/f'(x)$
-    \item \textbf{Aitken's $\Delta^2$}: Accelerates linear sequences. Is given by\\
-        $\hat{p}_n = p_n - \frac{(p_{n+1}-p_n)^2}{(p_{n+2}-p_{n+1})-(p_{n+1}-p_n)}$
-    \item Steffensen's: Combines Aitken's with fixed-point, achieves quadratic convergence
-    $p_{n+1} = p_n - \frac{[g(p_n)-p_n]^2}{g(g(p_n))-2g(p_n)+p_n}$
+    \item \textbf{Aitken's $\Delta^2$}: Accelerates linear sequences. Is given by\\$\hat{p}_n = p_n - \frac{(p_{n+1}-p_n)^2}{(p_{n+2}-p_{n+1})-(p_{n+1}-p_n)}$
 \end{itemize}
 
 \textbf{Polynomial Methods}
 \begin{itemize}
   \item Horner's method: Efficient evaluation ($n$ mults/adds) Algorithm: ex: evaluate $P(x)=\sum^{n}_{i=0}a_ix^i$ and derivative at $x_0$. Input $n,a_j, x_0: 0\le j\le n$. Output: $y=P(x_0)$, $z=P'(x_0)$. Set $y=a_n, z=a_n$. For $j=n-1,n-2,...,1$ set $y=x_0y+a_j,z=x_0z+y$. Endfor set $y-x_0y+a_0$ output y,z.  
     \item Deflation: Find roots sequentially via $P(x)\approx Q(x)(x-x_0)$
-    \item Müller's method: Quadratic interpolation using 3 points
     \item Fundamental thm of alg: If $P(x)$ has a degree $n\ge 1$, $P(x)$ has at least one root.
-    \item Cor: there also exists unique constants $x_1, ... x_k$ such that $\sum_{i=1}^{k}m_i=n, P(x)=a_n \times \prod_{i=1}^{k}(x-x_i)^{m_i}$
+    \item Cor: there also exists unique constants $x_1, ... x_k$ such that\\
+    $\sum_{i=1}^{k}m_i=n, P(x)=a_n \times \prod_{i=1}^{k}(x-x_i)^{m_i}$
     \item Cor: these functions are unique.
 \end{itemize}
 \textbf{Weierstrass}: $\forall f$ cts on $[a,b]$, $\forall \varepsilon>0$, $\exists$ polynomial $p(x)$ with $|f(x)-p(x)|<\varepsilon$ $\forall x \in [a,b]$.
@@ -340,23 +336,13 @@ f[x_i] &= f(x_i),\quad f[x_i,\dots,x_{i+k}] = \frac{f[x_{i+1},\dots,x_{i+k}] - f
 \end{align*}
 $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
 
-\textbf{Finite Differences} (step $h$): Forward: $\Delta f_i = f_{i+1}-f_i$; Backward: $\nabla f_i = f_i-f_{i-1}$
-
-\textbf{Newton's Formulas}: Forward: $P(x) = \sum_{k=0}^n \binom{s}{k} \Delta^k f_0$ where $x=x_0+sh$
-
-\textbf{Hermite}: Given $(x_j, f(x_j), f'(x_j))$, unique degree $\leq 2n+1$ polynomial:
-$H(x) = \sum_{j=0}^n f(x_j)H_j(x) + \sum_{j=0}^n f'(x_j)\hat{H}_j(x)$
-Error: $f(x)-H(x) = \frac{(x-x_0)^2\cdots(x-x_n)^2}{(2n+2)!}f^{(2n+2)}(\xi)$
-
+\textbf{Hermite}: Given $(x_j, f(x_j), f'(x_j))$, unique degree $\leq 2n+1$ we have:
+  \begin{itemize}
+\item $H(x) = \sum_{j=0}^n f(x_j)H_j(x) + \sum_{j=0}^n f'(x_j)\hat{H}_j(x)$
+\item Error: $f(x)-H(x) = \frac{(x-x_0)^2\cdots(x-x_n)^2}{(2n+2)!}f^{(2n+2)}(\xi)$
+  \end{itemize}
 \textbf{Cubic Splines}: $S(x_j)=f(x_j)$ and $S \in C^2[a,b]$; Boundary: Clamped ($S'$ at endpoints) or Natural ($S''=0$ at endpoints)
 Error: $\max|f(x)-S(x)| \leq \frac{5M}{384}h^4$, where $h=\max(x_{j+1}-x_j)$, $M=\max|f^{(4)}|$
-
-\textbf{Numerical Differentiation}:
-\begin{itemize}\setlength{\itemsep}{-1pt}
-\item Forward/Backward ($O(h)$): $f'(x_0) \approx \frac{f(x_0 \pm h) - f(x_0)}{h}$
-\item Centered ($O(h^2)$): $f'(x_0) \approx \frac{f(x_0 + h) - f(x_0 - h)}{2h}$
-\item Second Derivative: $f''(x_0) \approx \frac{f(x_0-h) - 2f(x_0) + f(x_0+h)}{h^2}$
-\end{itemize}
 
 \textbf{Richardson Extrapolation}: $N_{j+1}(h) = N_j(h/2) + \frac{N_j(h/2) - N_j(h)}{2^{j}-1}$
 
@@ -448,13 +434,8 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
     \item Error: \( O(h^4) \) for \( f \in C^4 \), \( O(h^2) \) for linear splines.
 \end{itemize}
 
-\textbf{Numerical Differentiation}
-\begin{itemize}
-    \item Centered difference: \( f'(x_0) \approx \frac{f(x_0+h)-f(x_0-h)}{2h} \), error \( O(h^2) \)
-    \item Optimal \( h \): Balance truncation (\( \propto h^2 \)) and roundoff (\( \propto h^{-1} \)).
-    \item \textbf{Richardson Extrapolation}:  
+    \textbf{Richardson Extrapolation}:  
         \( N_j(h) = N_{j-1}(h/2) + \frac{N_{j-1}(h/2)-N_{j-1}(h)}{2^{j}-1} \)
-\end{itemize}
 
 \textbf{Trapezoidal \& Simpson's Rules}
 \begin{itemize}
