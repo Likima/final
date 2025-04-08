@@ -1,7 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1744093206 "/home/brandon/316/final/FinalCS.tex" "FinalCS.pdf" "FinalCS" 1744093206
-  "/etc/texmf/web2c/texmf.cnf" 1742279462 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/brandon/316/final/FinalCS.tex" 1744093206 26310 9fd854c78a2de567dc96ba44b744792e ""
+["pdflatex"] 1744132899 "/home/brandon/316/final/FinalCS.tex" "FinalCS.pdf" "FinalCS" 1744132899
+  "/etc/texmf/web2c/texmf.cnf" 1742234870 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/home/brandon/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcbx0700.600pk" 1742242104 8412 2cb78eef4aa61bc165580f69cf8110d2 ""
+  "/home/brandon/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk" 1742242103 8244 421ea0a7ad546d6008b062602a5820b3 ""
+  "/home/brandon/316/final/FinalCS.tex" 1744132899 26810 83588c1eec02423f540d56b3022928af ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcbx0700.tfm" 1136768653 1536 50f9b6c0f7870bc0862614b77b8f0f5a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm" 1136768653 1536 73da8e8f1d2a4c957d51ca133585586b ""
@@ -117,14 +119,11 @@
   "/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty" 1253232110 1380 971a51b00a14503ddf754cab24c3f209 ""
   "/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty" 1635798903 56029 3f7889dab51d620aa43177c391b7b190 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
-  "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1636152094 2900 1537cc8184ad1792082cd229ecc269f4 ""
-  "/usr/share/texmf/fonts/type1/public/cm-super/sfbx0700.pfb" 1742271439 144215 c89c56d5c5b828c5c1657b4326c29df7 ""
-  "/usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb" 1742271439 154599 ded6d7c21788a8930eadc7fef7518942 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
-  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1742279470 4379155 98693266ff65f58d9f98aff394de12d2 ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1742279481 2801612 b134fd0648c2e05a0ba77f476908d2a9 ""
-  "FinalCS.aux" 1744093206 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
-  "FinalCS.tex" 1744093206 26310 9fd854c78a2de567dc96ba44b744792e ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1742235135 4036811 4cb80868003c86b962b6b5ae1e1e2902 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1742235146 1405648 d1e1c31eae9cac208bf758229d1a8388 ""
+  "FinalCS.aux" 1744132899 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
+  "FinalCS.tex" 1744132899 26810 83588c1eec02423f540d56b3022928af ""
   (generated)
   "FinalCS.aux"
   "FinalCS.log"
