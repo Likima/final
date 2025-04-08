@@ -355,7 +355,10 @@ Error: $\max|f(x)-S(x)| \leq \frac{5M}{384}h^4$, where $h=\max(x_{j+1}-x_j)$, $M
 \item Simpson's Rule ($O(h^4)$): $\int_a^b f(x)dx \approx \frac{h}{3}[f(a) + 4f\left(\frac{a+b}{2}\right) + f(b)]$
 \item Composite Simpson's Rule: \\$\int_a^b f(x)dx \approx \frac{h}{3}[f(a) + 4\sum_{i=1}^{n/2}f(x_{2i-1}) + 2\sum_{i=1}^{n/2-1}f(x_{2i}) + f(b)]$
 \item Composite Trapezoidal Rule: $\int_a^b f(x)dx \approx \frac{h}{2}[f(a) + 2\sum_{i=1}^{n-1}f(x_i) + f(b)]$
-\item Composite errors: Trapezoidal $-\frac{(b-a)h^2}{12}f''(\mu)$; Simpson $-\frac{(b-a)h^4}{180}f^{(4)}(\mu)$
+\item Composite Simpson $-\frac{(b-a)h^4}{180}f^{(4)}(\mu)$
+\item Single Trapezoid error: $-\frac{h^3}{12}f''(\xi)$  
+\item Trapezoidal error: $\frac{M(b-a)^3}{12n^2}$: $M=\max_{x\in[a,b]}(|f''(x)|)$
+\item Simpson's error: $-\frac{(b-a)^5}{180n^4}[max|f^{(4)}(x)|]$
 \end{itemize}
 
 \textbf{Romberg}: $R_{k,j} = R_{k,j-1} + \frac{R_{k,j-1} - R_{k-1,j-1}}{4^{j-1}-1}$, error $O(h^{2j})$
@@ -444,11 +447,9 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 
 \textbf{Trapezoidal \& Simpson's Rules}
 \begin{itemize}
-    \item Trapezoidal error: \( -\frac{(b-a)}{12}h^2f''(\mu) \)  
-    Simpson's error: \( -\frac{(b-a)}{180}h^4f^{(4)}(\mu) \)
     \item \textbf{Romberg Integration}: Accelerate Trapezoidal Rule via:
-        \[ R_{k,j} = R_{k,j-1} + \frac{R_{k,j-1}-R_{k-1,j-1}}{4^{j-1}-1} \]
-    \item Stop when \( |R_{k,k}-R_{k-1,k-1}| < \epsilon \).
+        $R_{k,j} = R_{k,j-1} + \frac{R_{k,j-1}-R_{k-1,j-1}}{4^{j-1}-1}$
+    \item Stop when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
 \end{itemize}
 
 \textbf{Adaptive Quadrature}
