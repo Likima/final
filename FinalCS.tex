@@ -339,6 +339,9 @@ $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
 \textbf{Hermite}: Given $(x_j, f(x_j), f'(x_j))$, unique degree $\leq 2n+1$ we have:
   \begin{itemize}
 \item $H(x) = \sum_{j=0}^n f(x_j)H_j(x) + \sum_{j=0}^n f'(x_j)\hat{H}_j(x)$
+    \item $H_j(x)=[1-2(x-x_j)L_j'(x_j)]L_j^2(x)$
+    \item $\hat{H}_j(x)=(x-x_j)L_j^2(x)$
+    \item Note: $L_j(x)$ denotes the jth Lagrange coefficient polynomial of degree n. 
 \item Error: $f(x)-H(x) = \frac{(x-x_0)^2\cdots(x-x_n)^2}{(2n+2)!}f^{(2n+2)}(\xi)$
   \end{itemize}
 \textbf{Cubic Splines}: $S(x_j)=f(x_j)$ and $S \in C^2[a,b]$; Boundary: Clamped ($S'$ at endpoints) or Natural ($S''=0$ at endpoints)

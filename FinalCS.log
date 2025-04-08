@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.17)  7 APR 2025 12:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.17)  7 APR 2025 17:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -428,12 +428,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 295--296
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 375--377
+Underfull \hbox (badness 1189) in paragraph at lines 378--380
 []\OT1/cmr/bx/n/7 Midpoint (RK2) $\OML/cmm/m/it/7 w[] \OT1/cmr/m/n/7 = \OML/cmm/m/it/7 w[] \OT1/cmr/m/n/7 +
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--383
+Underfull \hbox (badness 10000) in paragraph at lines 376--386
 []\OT1/cmr/bx/n/7 Runge-Kutta Meth-ods\OT1/cmr/m/n/7 : []
  []
 
@@ -447,7 +447,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  99i,12n,104p,1220b,530s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/brandon/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/brandon/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcbx0700.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on FinalCS.pdf (2 pages, 189217 bytes).
+Output written on FinalCS.pdf (2 pages, 189404 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream
