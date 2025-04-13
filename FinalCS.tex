@@ -265,7 +265,7 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \begin{itemize}
 \item \textbf{Bisection}: Suppose $f\in C[a,b]:f(a)\cdot f(b) <0$. Bisection generates $\{p_n\}$ approximating a zero p with $|p_n-p|\le \frac{b-a}{2^n}:n\ge 1$
 \item \textbf{Fixed Point}: If $g\in C[a,b]$, $g([a,b])\subseteq[a,b]$ g has a fixed point in $[a,b]$, additionally if $|g'|\leq K<1$, then the fixed point is unique.
-\item \textbf{Fixed Point Theorem}: Let $g\in C[a,b]$ and $g(x)\in[a,b]:\forall x\in[a,b]$. Suppose as well that g' exists on (a,b) and positive $K<1$ exists with $|g'(x)|\le K:\forall x\in (a,b)$. Then for any number $p_0 \in [a,b]$h the sequence defined by $p_n=g(p_{n-1}):n\ge1$ converges to the unique point $p\in[a,b]$
+\item \textbf{Fixed Point Theorem}: Let $g\in C[a,b]$ and $g(x)\in[a,b]:\forall x\in[a,b]$. Suppose as well that g' exists on (a,b) and positive $K<1$ exists with $|g'(x)|\le K:\forall x \in (a,b)$. Then for any number $p_0 \in [a,b]$h the sequence defined by $p_n=g(p_{n-1}):n\ge1$ converges to the unique point $p\in[a,b]$
 \item \textbf {Corollary}: If g satisfies the hypothesis of the above theorem, $|p_n-p| \le k^n\max(p_0-a,b-p_0)$ and $|p_n-p|\le\frac{k^n}{1-k}|p_1-p_0|:\forall n>1$
 \item \textbf{Newton}: For $f\in C^2[a,b]$ with simple root, $\exists\delta>0:p_0\in[p-\delta,p+\delta]$ converges.
 \item \textbf{Matrix Invertibility}: $|A|\neq0$ $\Leftrightarrow$ unique solution $Ax=b$ $\Leftrightarrow$ $A^{-1}$ exists
@@ -343,6 +343,11 @@ $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
     \item $\hat{H}_j(x)=(x-x_j)L_j^2(x)$
     \item Note: $L_j(x)$ denotes the jth Lagrange coefficient polynomial of degree n. 
 \item Error: $f(x)-H(x) = \frac{(x-x_0)^2\cdots(x-x_n)^2}{(2n+2)!}f^{(2n+2)}(\xi)$
+\item Parametric curve Interpolation:
+\begin{gather*}
+    x(t)=[2(x_0-x_1)+3(a_0+a_1)]t^2+[3(x_1-x_0)-3(a_1+2a_0)]t^2+3a_0t+x_0\\
+    y(t)=[2(y_0-y_1)+3(\beta_0+\beta_1)]t^3+[3(y_1-y_0)-3(\beta_1+2\beta_0)]t^2+3\beta_0t+y_0
+    \end{gather*}
   \end{itemize}
 \textbf{Cubic Splines}: $S(x_j)=f(x_j)$ and $S \in C^2[a,b]$; Boundary: Clamped ($S'$ at endpoints) or Natural ($S''=0$ at endpoints)
 Error: $\max|f(x)-S(x)| \leq \frac{5M}{384}h^4$, where $h=\max(x_{j+1}-x_j)$, $M=\max|f^{(4)}|$
@@ -404,18 +409,17 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \end{array}$
 [Error: $O(h^4)$]
 \end{itemize}
-
-\textbf{Error Analysis}
-\begin{itemize}
-\item \textbf{Local truncation error}: $\tau_{i+1} = y(t_{i+1}) - w_{i+1}$ given $w_i = y(t_i)$
-\item \textbf{Global truncation error}: Accumulated error across all steps
-\item For Euler: $|\tau_i| \leq \frac{h^2}{2}M$ (local), $O(h)$ (global) where $M = \max|y''|$
-\item For RK4: $O(h^5)$ (local), $O(h^4)$ (global)
-\end{itemize}
-
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.49\textwidth}
+    \textbf{Error Analysis}
+    \begin{itemize}
+    \item \textbf{Local truncation error}: $\tau_{i+1} = y(t_{i+1}) - w_{i+1}$ given $w_i = y(t_i)$
+    \item \textbf{Global truncation error}: Accumulated error across all steps
+    \item For Euler: $|\tau_i| \leq \frac{h^2}{2}M$ (local), $O(h)$ (global) where $M = \max|y''|$
+    \item For RK4: $O(h^5)$ (local), $O(h^4)$ (global)
+    \end{itemize}
+    
     \textbf{Stability \& Step Size}
     \begin{itemize}
     \item Well-posed problem requires: unique solution exists + small input changes → small output changes
@@ -426,8 +430,6 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \textbf{Lagrange Interpolation}
 \begin{itemize}
     \item \textbf{$\Delta^k$}: $\Delta^2f_i=\Delta(\Delta(f_i))=\Delta(f_{i+1}-f_i)=f_{i+2}-2f_{i+1}+f_i$
-    \item \textbf{Error}: \( |f-P| \leq \frac{\prod|(x-x_k)|}{(n+1)!}\max|f^{(n+1)}| \)
-    \item Avoid high-degree polynomials for non-smooth \( f \); use \textbf{Chebyshev nodes} to mitigate Runge's phenomenon.
     \item Reuse computations with \textbf{Neville's Method}:\\ for $i=1,2,...,n$ do: for $j=1,2,...,i$ do $Q_{i,j} \leftarrow \frac{(x-x_{i-j}Q_{i,j-1})-(x-x_i)Q_{i-1,j-1}}{x_i-x_{i-j}}$
 \end{itemize}
 
@@ -447,9 +449,6 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
     \item Error: \( O(h^4) \) for \( f \in C^4 \), \( O(h^2) \) for linear splines.
 \end{itemize}
 
-    \textbf{Richardson Extrapolation}:  
-        \( N_j(h) = N_{j-1}(h/2) + \frac{N_{j-1}(h/2)-N_{j-1}(h)}{2^{j}-1} \)
-
 \textbf{Trapezoidal \& Simpson's Rules}
 \begin{itemize}
     \item \textbf{Romberg Integration}: Accelerate Trapezoidal Rule via:
@@ -461,6 +460,12 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \begin{itemize}
     \item Error estimate: \( \frac{1}{15}|S(a,b)-S(a,c)-S(c,b)| \), \( c=(a+b)/2 \)
     \item Subdivide intervals where error \( > \epsilon/2 \).
+    \item Step 1: Apply Simpson's with $h=(b-a)/2$. \\$\int_a^bf(x) = h/3\left[f(a)+4f(a+h)+f(b)\right]-\frac{h^5}{90}f^{(4)}(\mu) \mu\in(a,b)$
+    \item Step 2: Find error using Simpson's on $h=(b-a)/4$\\
+    $\int_a^bf(x)=h/6[f(a)+4f(a+h/2)+2f(a+b)+4f(a+3h/2)+f(b)]-(\frac{h}{2})^4\cdot \frac{(b-a)}{180}f^{(4)}(\tilde{\mu}): \tilde{\mu}\in(a,b)$
+    \item Note: We assume $f^4(\mu)=f^4(\tilde{\mu})$: true for small h.
+    \item Step 3: Calculate error as $1/10\left| S(a,b)-S(a,\frac{a+b}{2})-S(\frac{a+b}{2},b)\right| < \varepsilon $
+    \item Step 4: If true, RETURN. Else, GOTO step 1.
 \end{itemize}
 
 \textbf{Gaussian Quadrature}
@@ -479,12 +484,16 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
     \end{itemize}
 \end{itemize}
 
-\textbf{General Tips}
+\textbf{Legrendre Polynomials}
 \begin{itemize}
-    \item Monitor error terms: \( \propto h^kf^{(k)} \).  
-    \item For oscillatory \( f \), use splines or piecewise methods.  
-    \item \textit{High-degree polynomials}: Unstable for noisy/non-smooth data.  
-    \item \textit{Symmetry}: Exploit in Gaussian quadrature and even/odd functions.
+    \item{$P_n(x)$ denotes the n'th degree Legrendre polynomial } 
+    \item{$\int_{-1}^1 P(x)P_n(x)dx = 0: $ P(x) is of degree < n}
+    \item{$P_0(x)=1, P_1(x)=x, P_2(x) = x^2-1/3, P_3(x)=x^3-3/5x, P_4(x)=x^4-6/7x^2+3/35$}
+  \end{itemize}
+
+\textbf{Tips:}
+\begin{itemize}
+  \item{Use Gaussian quadrature with $n=c\rightarrow$ apply c-point Gauss-Legendre Rule.}
 \end{itemize}
 
 \textbf{Theorems:}
@@ -496,6 +505,7 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
   $f(x)=P(x)+\frac{f^{(n+1)}(\xi(x))}{(n+1)!}\prod_{i=0}^{n}(x-x_i)$
   with P(x) being the nth Lagrange interpolating polynomial
   \item {\textbf{Thm: Err Trapezoid}: Let $f\in C^2[a,b]$, $h=(b-a)/n$, $x_j=a+jh:0\le j\le n$. Then $\exists\mu\in(a,b)$ for which the composite trapezoid rule with n subivls has an err term of $\frac{b-a}{12}h^2f''(\mu)$}
+  \item {\textbf{Thm: Legrendre Thm}}: suppose $x_1,x_2,\cdots,x_n$ are the roots of the nth degree Legrendre Polynomial and $\forall i = 1,2,\cdots,n$ are the numbers $c_i$ such that $c_i=\int_{-1}^1\prod_{j=1,j\ne}^n \frac{x-x_j}{x_i-x_j}dx$. If $P(x)$ is any polynomial of degree $<2$, then $\int_{-1}^1P(x)dx=\sum_{i=1}^nc_iP(x_i)$ 
 \end{itemize}
 
 
