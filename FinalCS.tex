@@ -361,7 +361,7 @@ $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
   \textbf{Cubic Splines}:\\
   \begin{minipage}[t]{0.45\textwidth}
     \begin{itemize}
-      \item{$S_j^{(n)}(x)=S_{j+1}^{(n)}(x): n=0,1,2; x$ is a boundary point }
+      \item{$S_j^{(n)}(x)=S_{j+1}^{(n)}(x): n=0,1,2; x$ is an interior point }
       \item{Err: $\max{|f(x)-S(x)|}\le \frac{5M}{384}h^4:h=\max(x_{j+1}-x_j),$\\$M=\max|f^{(4)}|$}
     \end{itemize}
   \end{minipage}
@@ -416,27 +416,27 @@ $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
 
 \textbf{Numerical Methods}
 \begin{itemize}
-\item \textbf{Euler's Method}: $w_{i+1} = w_i + hf(t_i,w_i)$ [Error: $O(h)$]
-\item \textbf{Taylor Methods}: $w_{i+1} = w_i + hT^{(n)}(t_i,w_i)$ where 
+\item \textbf{Euler's Method}: $y_{i+1} = y_i + hf(t_i,y_i)$ [Error: $O(h)$]
+\item \textbf{Taylor Methods}: $y_{i+1} = y_i + hT^{(n)}(t_i,y_i)$ where 
 $T^{(n)} = f + \frac{h}{2}f' + \cdots + \frac{h^{n-1}}{n!}f^{(n-1)}$
 \item \textbf{Runge-Kutta Methods}:\\
 \begin{minipage}[t]{0.45\textwidth}
     \textbf{Midpoint (RK2)}\\
-    $w_{i+1} = w_i + hf(t_i+\frac{h}{2}, w_i+\frac{h}{2}f_i)$
+    $y_{i+1} = y_i + hf(t_i+\frac{h}{2}, y_i+\frac{h}{2}f_i)$
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.45\textwidth}
     \textbf{Modified Euler (RK2)}\\
-    $w_{i+1} = w_i + \frac{h}{2}(f_i + f(t_{i+1},w_i+hf_i))$
+    $y_{i+1} = y_i + \frac{h}{2}(f_i + f(t_{i+1},y_i+hf_i))$
 \end{minipage}
 
 \item \textbf{Classical RK4}:
 $\begin{array}{l}
-k_1 = hf(t_i,w_i) \\
-k_2 = hf(t_i+\frac{h}{2},w_i+\frac{k_1}{2}) \\
-k_3 = hf(t_i+\frac{h}{2},w_i+\frac{k_2}{2}) \\
-k_4 = hf(t_i+h,w_i+k_3) \\
-w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+k_1 = hf(t_i,y_i) \\
+k_2 = hf(t_i+\frac{h}{2},y_i+\frac{k_1}{2}) \\
+k_3 = hf(t_i+\frac{h}{2},y_i+\frac{k_2}{2}) \\
+k_4 = hf(t_i+h,y_i+k_3) \\
+y_{i+1} = y_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \end{array}$
 [Error: $O(h^4)$]
 \end{itemize}
