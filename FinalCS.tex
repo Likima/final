@@ -371,9 +371,6 @@ $\int_a^b f(x)\,dx \approx \frac{3(b-a)}{8n}\left[f(x_0)+3f(x_1)+3f(x_2)+2f(x_3)
     \item{$R_{k,1}$ represents the approximation of the integral using $m_k=2^{k-1}$ intervals}
 \end{itemize}
 
-\textbf{Gaussian Quadrature}: Uses Legendre polynomial roots as nodes, exact for degree $\leq 2n-1$
-Scale to $[a,b]$ via $\int_a^b f(x)dx = \frac{b-a}{2}\int_{-1}^1 f\left(\frac{(b-a)t + a + b}{2}\right)dt$
-
 \textbf{\S ODE Initial Value Problems}
 \begin{itemize}
 \item \textbf{Basic Problem}: $y'(t) = f(t,y)$, $y(a) = \alpha$
@@ -468,9 +465,18 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 
 \textbf{Gaussian Quadrature}
 \begin{itemize}
+  \item $\int_a^b w(x)f(x)dx=\sum_{i=1}{n}w_if(x_i)$ where $w(x)$: weight functions, $w_i$: weight at i, $x_i$ node at i. 
     \item Nodes: Roots of Legendre polynomials \( P_n(x) \). Weights: \( c_i = \int_{-1}^1 \prod_{j\neq i}\frac{x-x_j}{x_i-x_j}dx \)
-    \item Transform to \([-1,1]\): \( x = \frac{(b-a)t + (a+b)}{2} \), \( dx = \frac{b-a}{2}dt \)
     \item Exact for polynomials of degree \( \leq 2n-1 \).
+
+    \item Step 1: Transform to \([-1,1]\): \( x = \frac{(b-a)t + (a+b)}{2} \), \( dx = \frac{b-a}{2}dt \)
+    \item Step 2: substitute x into integrand
+    \item Step 3: use the formulae to get the answer:
+    \begin{itemize}
+      \item 1-point: $\int_{-1}^1f(x)dx=2f(0)$
+      \item 2-point: $\int_{-1}^1f(x)dx=f(-\frac{1}{\sqrt{3}})+f(\frac{1}{\sqrt{3}}): w_1=w_2;x_1=-\frac{1}{\sqrt{3}}, x_2 = \frac{1}{\sqrt{3}}$
+      \item 3-point: $\int_{-1}^1f(x)dx=\frac{5}{9}f(-\sqrt{\frac{3}{5}})+\frac{8}{9}f(0)+\frac{5}{9}f(\sqrt{\frac{3}{5}})$
+    \end{itemize}
 \end{itemize}
 
 \textbf{General Tips}
