@@ -475,9 +475,6 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \begin{itemize}
     \item \textbf{Cubic splines}: Solve tridiagonal system (\(O(n)\) ops) with:
         \[ h_{i-1}c_{i-1} + 2(h_{i-1}+h_i)c_i + h_ic_{i+1} = \frac{3}{h_i}(a_{i+1}-a_i) - \frac{3}{h_{i-1}}(a_i-a_{i-1}) \]
-    \item \textbf{Natural splines} (\(S''=0\)): Stable but less accurate.  
-    \textbf{Clamped splines}: Require \(f'(a), f'(b)\) but higher accuracy.
-    \item Error: \( O(h^4) \) for \( f \in C^4 \), \( O(h^2) \) for linear splines.
 \end{itemize}
 
 \textbf{Trapezoidal \& Simpson's Rules}
@@ -526,7 +523,7 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \textbf{Tips:}
 \begin{itemize}
   \item{Use Gaussian quadrature with $n=c\rightarrow$ apply c-point Gauss-Legendre Rule.}
-  \item{When asked for the degree of precision, plug in $x^0, x^1, x^2, \cdots, x^n$ until failure. The n before it fails is the degree of precision}
+  \item{When asked for the degree of precision, plug in $x^0, x^1, x^2, \cdots, x^n$ until failure. The n before it fails is the degree of precision. A formula is \textbf{Quadrature} if it has a degree of precision $\ge 3$}
 \end{itemize}
 
 \textbf{Theorems:}
