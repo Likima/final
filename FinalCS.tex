@@ -454,6 +454,7 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
     \item \textbf{Romberg Integration}: Accelerate Trapezoidal Rule via:
         $R_{k,j} = R_{k,j-1} + \frac{R_{k,j-1}-R_{k-1,j-1}}{4^{j-1}-1}$
     \item Stop when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
+    \item The degree of precision of a quadrature formula is the largest n such that the formula is exact for $x^k: \forall k=0,1,\cdots,n$
 \end{itemize}
 
 \textbf{Adaptive Quadrature}
@@ -494,6 +495,7 @@ w_{i+1} = w_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \textbf{Tips:}
 \begin{itemize}
   \item{Use Gaussian quadrature with $n=c\rightarrow$ apply c-point Gauss-Legendre Rule.}
+  \item{When asked for the degree of precision, plug in $x^0, x^1, x^2, \cdots, x^n$ until failure. The n before it fails is the degree of precision}
 \end{itemize}
 
 \textbf{Theorems:}
