@@ -217,11 +217,20 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \end{itemize}
 \item Convergent: $\lim_{k\to\infty}A^k=0$ $\Leftrightarrow$ $\rho(A)<1$
 \item Matrix Norms: matrix norms have the following properties
+  \begin{minipage}[t]{0.45\textwidth}
 \begin{itemize}
-    \item $||A||\geq 0$ with $||A||=0 \leftrightarrow A=0$
+    \item $||A||\geq 0$
     \item $||\alpha A || = |\alpha|\cdot ||A||$
     \item $||A+B|| \leq ||A|| + ||B||$
 \end{itemize}
+  \end{minipage}
+\hfill
+  \begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+  \item $||A||=0 \leftrightarrow A=0$
+  \item $||AB||=||A||||B||$
+\end{itemize}
+  \end{minipage}
 \end{itemize}
 
 \textbf{\S Iterative Methods}
@@ -349,8 +358,21 @@ $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
     y(t)=[2(y_0-y_1)+3(\beta_0+\beta_1)]t^3+[3(y_1-y_0)-3(\beta_1+2\beta_0)]t^2+3\beta_0t+y_0
     \end{gather*}
   \end{itemize}
-\textbf{Cubic Splines}: $S(x_j)=f(x_j)$ and $S \in C^2[a,b]$; Boundary: Clamped ($S'$ at endpoints) or Natural ($S''=0$ at endpoints)
-Error: $\max|f(x)-S(x)| \leq \frac{5M}{384}h^4$, where $h=\max(x_{j+1}-x_j)$, $M=\max|f^{(4)}|$
+  \textbf{Cubic Splines}:\\
+  \begin{minipage}[t]{0.45\textwidth}
+    \begin{itemize}
+      \item{$S_j^{(n)}(x)=S_{j+1}^{(n)}(x): n=0,1,2; x$ is a boundary point }
+      \item{Err: $\max{|f(x)-S(x)|}\le \frac{5M}{384}h^4:h=\max(x_{j+1}-x_j),$\\$M=\max|f^{(4)}|$}
+    \end{itemize}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.45\textwidth}
+    \begin{itemize}
+      \item $S(x_j)=f(x_j):\forall j$ provided. \\$S\in C^2[a,b]$ 
+      \item{Clamped: $S'(a)=f'(a), S'(b)=f'(b): a,b $ are endpoints }
+      \item{Natural: $S''(a)=S''(b)=0:a,b$ are endpoints }
+    \end{itemize}
+  \end{minipage}
 
 \textbf{Richardson Extrapolation}: $N_{j+1}(h) = N_j(h/2) + \frac{N_j(h/2) - N_j(h)}{2^{j}-1}$
 
