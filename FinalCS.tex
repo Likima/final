@@ -417,6 +417,7 @@ $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
 \textbf{Numerical Methods}
 \begin{itemize}
 \item \textbf{Euler's Method}: $y_{i+1} = y_i + hf(t_i,y_i)$ [Error: $O(h)$]
+\item truncation error $>$ round off in Euler for h large
 \item \textbf{Taylor Methods}: $y_{i+1} = y_i + hT^{(n)}(t_i,y_i)$ where 
 $T^{(n)} = f + \frac{h}{2}f' + \cdots + \frac{h^{n-1}}{n!}f^{(n-1)}$
 \item \textbf{Runge-Kutta Methods}:\\
@@ -524,6 +525,8 @@ y_{i+1} = y_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \begin{itemize}
   \item{Use Gaussian quadrature with $n=c\rightarrow$ apply c-point Gauss-Legendre Rule.}
   \item{When asked for the degree of precision, plug in $x^0, x^1, x^2, \cdots, x^n$ until failure. The n before it fails is the degree of precision. A formula is \textbf{Quadrature} if it has a degree of precision $\ge 3$}
+  \item{Polynomial interpolation. When asked for the degree, apply $\Delta x^k x_{i+j}-x_i \rightarrow \Delta x^{k+1}$} until $\Delta x^k: x_{i}=c: \forall i$ Return $k$.
+  \item{When asked to approximate x for f(x) on $(\hat{x}, f(\hat{x}))$, construct iteration such that $f=d/dx((\hat{x})-x)^2+(f(\hat{x})-f(x))^2$}. Use this function as the iteration function.
 \end{itemize}
 
 \textbf{Theorems:}
