@@ -243,8 +243,7 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \item \textbf{Jacobi}: $x^{k+1}=D^{-1}(L+U)x^k+D^{-1}b$
 \item \textbf{Gauss-Seidel}: $x^{k+1}=(D-L)^{-1}Ux^k+(D-L)^{-1}b$
 \item \textbf{Stein-Rosenberg}: For matrices with positive diagonals: $\rho_{GS}\leq\rho_J<1$
-\item \textbf{Speed of Convergence}: given matrices $T_{GS}=(D-L)^{-1}U$ and $T_J =D^{-1}(L+U)$, compare $\rho$. The bigger the $\rho$, the faster the convergence.
-\item Error: $||x-x^k||\leq\frac{||T||^k}{1-||T||}||x^1-x^0||$
+\item \textbf{Speed of Convergence}: given matrices $T_{GS}=(D-L)^{-1}U$ and $T_J =D^{-1}(L+U)$, compare $\rho$. The smaller the $\rho$, the faster the convergence.\item Error: $||x-x^k||\leq\frac{||T||^k}{1-||T||}||x^1-x^0||$
 \item Stopping: $\frac{||x^k-x^{k-1}||}{||x^k||}<\varepsilon$
 \end{itemize}
 
@@ -279,7 +278,7 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
 \item \textbf{Bisection}: Suppose $f\in C[a,b]:f(a)\cdot f(b) <0$. Bisection generates $\{p_n\}$ approximating a zero p with $|p_n-p|\le \frac{b-a}{2^n}:n\ge 1$
 \item \textbf{Fixed Point}: If $g\in C[a,b]$, $g([a,b])\subseteq[a,b]$ g has a fixed point in $[a,b]$, additionally if $|g'|\leq K<1$, then the fixed point is unique.
 \item \textbf{Fixed Point Theorem}: Let $g\in C[a,b]$ and $g(x)\in[a,b]:\forall x\in[a,b]$. Suppose as well that g' exists on (a,b) and positive $K<1$ exists with $|g'(x)|\le K:\forall x \in (a,b)$. Then for any number $p_0 \in [a,b]$h the sequence defined by $p_n=g(p_{n-1}):n\ge1$ converges to the unique point $p\in[a,b]$
-\item \textbf {Corollary}: If g satisfies the hypothesis of the above theorem, $|p_n-p| \le k^n\max(p_0-a,b-p_0)$ and $|p_n-p|\le\frac{k^n}{1-k}|p_1-p_0|:\forall n>1$
+\item \textbf{Corollary}: If g satisfies the hypothesis of the above theorem, $|p_n-p| \le k^n\max(p_0-a,b-p_0)$ and $|p_n-p|\le\frac{k^n}{1-k}|p_1-p_0|:\forall n>1$
 \item \textbf{Newton}: For $f\in C^2[a,b]$ with simple root, $\exists\delta>0:p_0\in[p-\delta,p+\delta]$ converges.
 \item \textbf{Matrix Invertibility}: $|A|\neq0$ $\Leftrightarrow$ unique solution $Ax=b$ $\Leftrightarrow$ $A^{-1}$ exists
 \item \textbf{Taylor}: With $R_n(x)\Rightarrow f(x)=P_n(x)+R_n(x)$, $R_n(x)=\frac{f^{n+1}(\xi)}{(n+1)!}(x-x_0)^{n+1}$:$\xi \epsilon (x, x_0)$
@@ -338,10 +337,6 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
     \item Cor: these functions are unique.
 \end{itemize}
 \textbf{Weierstrass}: $\forall f$ cts on $[a,b]$, $\forall \varepsilon>0$, $\exists$ polynomial $p(x)$ with $|f(x)-p(x)|<\varepsilon$ $\forall x \in [a,b]$.
-
-  \textbf{Lagrange Interpolation (unique!)}:\\ $P(x) = \sum_{m=0}^N f(x_m) L_m(x)$, where $L_m(x) = \prod_{\substack{k=0\\k\neq m}}^N \frac{x-x_k}{x_m-x_k}$
-
-\textbf{Interpolation Error}: $f(x)-P(x) = \frac{f^{(n+1)}(\xi(x))}{(n+1)!} \prod_{k=0}^n (x-x_k)$ for $f\in C^{n+1}[a,b]$
 
 \textbf{Newton's Divided Differences}:
 \begin{align*}
@@ -409,6 +404,8 @@ $P_n(x) = \sum_{k=0}^n f[x_0,\dots,x_k] \prod_{j=0}^{k-1} (x-x_j)$
 \begin{itemize}
     \item{$R_{k,j} = R_{k,j-1} + \frac{R_{k,j-1} - R_{k-1,j-1}}{4^{j-1}-1}$, error $O(h^{2j})$}
     \item{$R_{k,1}$ represents the approximation of the integral using $m_k=2^{k-1}$ intervals}
+    \item Stop when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
+    \item The degree of precision of a quadrature formula is the largest n such that the formula is exact for $x^k: \forall k=0,1,\cdots,n$
 \end{itemize}
 
 \textbf{\S ODE Initial Value Problems}
@@ -466,25 +463,13 @@ y_{i+1} = y_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 \textbf{Lagrange Interpolation}
 \begin{itemize}
     \item \textbf{$\Delta^k$}: $\Delta^2f_i=\Delta(\Delta(f_i))=\Delta(f_{i+1}-f_i)=f_{i+2}-2f_{i+1}+f_i$
+    \item \textbf{Interpolation Error}: $f(x)-P(x) = \frac{f^{(n+1)}(\xi(x))}{(n+1)!} \prod_{k=0}^n (x-x_k)$ for $f\in C^{n+1}[a,b]$
+    \item $P(x) = \sum_{m=0}^N f(x_m) L_m(x)$, where $L_m(x) = \prod_{\substack{k=0\\k\neq m}}^N \frac{x-x_k}{x_m-x_k}$
     \item Reuse computations with \textbf{Neville's Method}:\\ for $i=1,2,...,n$ do: for $j=1,2,...,i$ do $Q_{i,j} \leftarrow \frac{(x-x_{i-j}Q_{i,j-1})-(x-x_i)Q_{i-1,j-1}}{x_i-x_{i-j}}$
 \end{itemize}
-
-\textbf{Hermite Interpolation}
-\begin{itemize}
-    \item Error term: \( \frac{(x-x_0)^2\cdots(x-x_n)^2}{(2n+2)!}\max|f^{(2n+2)}| \)
-    \item Handle derivatives via \textbf{divided differences} with repeated nodes: \( z_{2i}=z_{2i+1}=x_i \)
-    \item \textit{Warning}: Noisy derivatives \(\Rightarrow\) amplified errors.
-\end{itemize}
-
 \begin{itemize}
     \item \textbf{Cubic splines}: Solve tridiagonal system (\(O(n)\) ops) with:
         \[ h_{i-1}c_{i-1} + 2(h_{i-1}+h_i)c_i + h_ic_{i+1} = \frac{3}{h_i}(a_{i+1}-a_i) - \frac{3}{h_{i-1}}(a_i-a_{i-1}) \]
-\end{itemize}
-
-\begin{itemize}
-  \textbf{Romberg:}
-    \item Stop when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
-    \item The degree of precision of a quadrature formula is the largest n such that the formula is exact for $x^k: \forall k=0,1,\cdots,n$
 \end{itemize}
 
 \textbf{Adaptive Quadrature}
