@@ -167,6 +167,8 @@ a_{21}b_{11}+a_{22}b_{21}+a_{23}b_{31} & a_{21}b_{12}+a_{22}b_{22}+a_{23}b_{32}
     $||A||=\max_{||x||=1}||Ax|| \ge ||Ax||:x \text{ is an e-vec s.t ||x||=1}=||\lambda x|| = |\lambda|||x||=|\lambda|\square$
     \item When performing Jacobi or GS, when computing L+U, flip the signs of all entries.
     \item To determine convergence for fixed point, compute $g'(p_0)\le1$, which gives a,b. Prove $g(x)$ cts on [a,b], $g(x)\in[a,b]$, $g'(x)$ exists on (a,b), $|g'(x)|\le k:\forall x \in(a,b), 0<k<1$
+    \item In general, Aitken's method only accelerates convergence of linear sequences. So not bisection, Newton's, secant...
+    \item Truncation of IVPs is defined as the error made in one step. (assuming all previous steps executed without error.)
 \end{itemize}
 \end{minipage}
 \hfill
@@ -474,16 +476,13 @@ y_{i+1} = y_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
     \item \textit{Warning}: Noisy derivatives \(\Rightarrow\) amplified errors.
 \end{itemize}
 
-\textbf{Splines}
 \begin{itemize}
     \item \textbf{Cubic splines}: Solve tridiagonal system (\(O(n)\) ops) with:
         \[ h_{i-1}c_{i-1} + 2(h_{i-1}+h_i)c_i + h_ic_{i+1} = \frac{3}{h_i}(a_{i+1}-a_i) - \frac{3}{h_{i-1}}(a_i-a_{i-1}) \]
 \end{itemize}
 
-\textbf{Trapezoidal \& Simpson's Rules}
 \begin{itemize}
-    \item \textbf{Romberg Integration}: Accelerate Trapezoidal Rule via:
-        $R_{k,j} = R_{k,j-1} + \frac{R_{k,j-1}-R_{k-1,j-1}}{4^{j-1}-1}$
+  \textbf{Romberg:}
     \item Stop when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
     \item The degree of precision of a quadrature formula is the largest n such that the formula is exact for $x^k: \forall k=0,1,\cdots,n$
 \end{itemize}
@@ -541,8 +540,16 @@ y_{i+1} = y_i + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
   with P(x) being the nth Lagrange interpolating polynomial
   \item {\textbf{Thm: Err Trapezoid}: Let $f\in C^2[a,b]$, $h=(b-a)/n$, $x_j=a+jh:0\le j\le n$. Then $\exists\mu\in(a,b)$ for which the composite trapezoid rule with n subivls has an err term of $\frac{b-a}{12}h^2f''(\mu)$}
   \item {\textbf{Thm: Legrendre Thm}}: suppose $x_1,x_2,\cdots,x_n$ are the roots of the nth degree Legrendre Polynomial and $\forall i = 1,2,\cdots,n$ are the numbers $c_i$ such that $c_i=\int_{-1}^1\prod_{j=1,j\ne}^n \frac{x-x_j}{x_i-x_j}dx$. If $P(x)$ is any polynomial of degree $<2$, then $\int_{-1}^1P(x)dx=\sum_{i=1}^nc_iP(x_i)$ 
+  \item {\textbf{Thm: Convexity}: A set is convex if for $(t_1,y_1)\in D: D\subset \mathbb{R}$, the point $((1-\lambda)t_1+\lambda t_2, (1-\lambda)y_1+\lambda y_2)\in D: \lambda \in [0,1]$}
+  \item {\textbf{Thm: Convex-Lipschitz}: Let $f(t,y)$ be defined on convex $D\subset \mathbb{R}^2$. If $\exists L >0: |df/dy(t,y)|\le L, \forall(t,y)\in D$ }
+  \item {\textbf{Thm: Uniqueness-Lipschitz}: Suppose $D=\{(t,y)|a\le t \le b, -\infty < y < \infty \}$ and $f(t,y)$ cts on D. If f satisfies a Lipschitz on D in y, then $y'(t)=f(t,y), a\le t \le b, y(a)=\alpha$ has a unique solution $y(t):a\le t\le b$ }
+  \item{\textbf{Thm: IVP well-posed-ness}: IVP is well posed it a unique soln exists and $\exists \varepsilon_0, k>0$ st $\forall \varepsilon, \varepsilon_0 > \varepsilon > 0 $, whenever $\delta(t)$ is cts with $|\delta(t)<\epsilon|: \forall t \in [a,b]$ and $|\delta_0| < \varepsilon $, the IVP: $dz/dt = f(t,z)+\delta(t),a\le t\le b, z(0)=\alpha + \delta_0$ has a unique soln with $dy/dt = f(t,y), a\le t\le b, y(0)=\alpha$ }
 \end{itemize}
 
+\textbf{Proofs:}\\
+\begin{itemize}
+  \item {$||A||=\max_{||x||=1}||Ax||\ge||\lambda x= |\lambda| ||x|| = |\lambda|$}
+\end{itemize}
 
 \end{minipage}
 

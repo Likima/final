@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.17)  13 APR 2025 19:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.3.17)  13 APR 2025 21:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -418,19 +418,108 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 175--191
+Underfull \hbox (badness 10000) in paragraph at lines 179--195
 []\OT1/cmr/m/n/7 nxn: $\OMS/cmsy/m/n/7 j\OML/cmm/m/it/7 A\OMS/cmsy/m/n/7 j \OT1/cmr/m/n/7 = [][] \OML/cmm/m/it/7 a[]A[]$ \OT1/cmr/m/n/7 via co-fac-tors $\OML/cmm/m/it/7 A[] \OT1/cmr/m/n/7 = (\OMS/cmsy/m/n/7 ^^@\OT1/cmr/m/n/7 1)[]\OML/cmm/m/it/7 M[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--234
+Underfull \hbox (badness 10000) in paragraph at lines 223--238
 []\OT1/cmr/m/n/7 Matrix Norms: ma-trix norms have the fol-low-ing prop-er-ties
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 304--305
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+
+ []
+
+
+./FinalCS.tex:486: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.486     \item S
+                 top when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./FinalCS.tex:486: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.486     \item S
+                 top when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./FinalCS.tex:486: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.486     \item S
+                 top when $|R_{k,k}-R_{k-1,k-1}| < \epsilon$.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./FinalCS.tex:487: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.487     \item T
+                 he degree of precision of a quadrature formula is the large...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./FinalCS.tex:487: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.487     \item T
+                 he degree of precision of a quadrature formula is the large...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./FinalCS.tex:487: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.487     \item T
+                 he degree of precision of a quadrature formula is the large...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./FinalCS.tex:488: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.488 \end{itemize}
+                   
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--551
 
  []
 
@@ -438,13 +527,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 304--305
 Here is how much of TeX's memory you used:
  14197 strings out of 480247
  279744 string characters out of 5896151
- 637393 words of memory out of 5000000
+ 639919 words of memory out of 5000000
  31917 multiletter control sequences out of 15000+600000
  471891 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,12n,104p,1196b,530s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/brandon/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/brandon/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcbx0700.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on FinalCS.pdf (2 pages, 190824 bytes).
+Output written on FinalCS.pdf (2 pages, 192842 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream
